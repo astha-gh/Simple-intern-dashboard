@@ -1,22 +1,17 @@
 const express = require('express');
 const app = express();
-const PORT = 7777;
+const PORT = process.env.PORT || 7777;
 const cors = require('cors');
 
 app.use(cors());
+ 
+const intern = require('./data/internData');
+const leaderBoard = require('./data/leaderBoardData');
 
-const intern = {
-    'name' : "Astha Devadiga",
-    'referralCode' : 'astha2025',
-    'donationsRaised' : 12000,
-    'Rewards' : ['Free T-Shirt' , 'Certificate'],
-}
+app.get('/', (req, res) => {
+    res.send('App Loaded');
+});
 
-const leaderBoard = [
-    {name : 'Ranjeet' , donationsRaised: 20000},
-    {name : 'Sujata' , donationsRaised: 18000},
-    {name : 'The Rock' , donationsRaised: 15000},
-];
 
 app.get('/api/intern' , (req , res) => {
     res.json(intern);
